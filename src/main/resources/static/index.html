@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Management</title>
+</head>
+<body>
+<h2>Add a New Transaction</h2>
+<form id="transactionForm">
+    <label>Type:</label>
+    <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+    </select><br><br>
+
+    <label>Amount:</label>
+    <input type="number" id="amount" required><br><br>
+
+    <label>Description:</label>
+    <input type="text" id="description" required><br><br>
+
+    <label>Date:</label>
+    <input type="date" id="date" required><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<h2>Transactions List</h2>
+<button onclick="fetchTransactions()">Refresh Transactions</button>
+<ul id="transactionsList"></ul>
+
+<h2>Total Balance: <span id="totalBalance">$0.00</span></h2>
+
+<script>
+    document.getElementById("transactionForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const type = document.getElementById("type").value;
+        const amount = parseFloat(document.getElementById("amount").value);
+        const description = document.getElementById("description").value;
+        const date = document.getElementById("date").value;
+
+        fetch("/transactions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ type, amount, description, date })
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert("Transaction Added: " + JSON.stringify(data));
+                fetchTransactions();
+            })
+            .catch(error => alert("Error: " + error));
+    });
+
+    function fetchTransactions() {
+        fetch("/transactions")
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById("transactionsList");
+                const totalBalanceElement = document.getElementById("totalBalance");
+                list.innerHTML = "";
+                let totalBalance = 0;
+
+                data.forEach(transaction => {
+                    const amount = parseFloat(transaction.amount);
+                    if (transaction.type === "income") {
+                        totalBalance += amount;
+                    } else {
+                        totalBalance -= amount;
+                    }
+
+                    list.innerHTML += `<li>${transaction.type.toUpperCase()} - $${amount.toFixed(2)} - ${transaction.description} - ${transaction.date}</li>`;
+                });
+
+                totalBalanceElement.innerText = `$${totalBalance.toFixed(2)}`;
+            })
+            .catch(error => alert("Error fetching transactions: " + error));
+    }
+
+    // Fetch transactions and total on page load
+    window.onload = fetchTransactions;
+</script>
+</body>
+</html>
