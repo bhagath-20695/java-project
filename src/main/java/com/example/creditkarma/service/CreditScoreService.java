@@ -4,7 +4,6 @@ import com.example.creditkarma.model.CreditScore;
 import com.example.creditkarma.repository.CreditScoreRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.Random;
 
 @Service
