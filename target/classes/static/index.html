@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreditKarma Finance App</title>
+    <script>
+        async function registerUser() {
+            const username = document.getElementById("register-username").value;
+            const password = document.getElementById("register-password").value;
+
+            const response = await fetch("/auth/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert("Registration Failed: " + errorData.message);
+                return;
+            }
+
+            const data = await response.json();
+            alert(data.message);
+        }
+
+        async function loginUser() {
+            const username = document.getElementById("login-username").value;
+            const password = document.getElementById("login-password").value;
+
+            const response = await fetch("/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert("Login Failed: " + errorData.message);
+                return;
+            }
+
+            const data = await response.json();
+            alert(data.message);
+        }
+
+        async function addTransaction() {
+            const type = document.getElementById("transaction-type").value;
+            const amount = document.getElementById("transaction-amount").value;
+            const category = document.getElementById("transaction-category").value;
+
+            const response = await fetch("/transactions", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ type, amount, category, date: new Date().toISOString().split('T')[0] })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert("Transaction Failed: " + errorData.message);
+                return;
+            }
+
+            const data = await response.json();
+            alert("Transaction Added: " + data.amount);
+        }
+
+        async function getCreditScore() {
+            const userId = document.getElementById("credit-userId").value;
+
+            const response = await fetch(`/credit-score/${userId}`, {
+                method: "GET"
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                alert("Credit Score Fetch Failed: " + errorData.message);
+                return;
+            }
+
+            const data = await response.json();
+            document.getElementById("credit-score-result").innerText = "Credit Score: " + data.score;
+        }
+    </script>
+</head>
+<body>
+<h2>CreditKarma Finance App</h2>
+
+<h3>Register</h3>
+<input type="text" id="register-username" placeholder="Username">
+<input type="password" id="register-password" placeholder="Password">
+<button onclick="registerUser()">Register</button>
+
+<h3>Login</h3>
+<input type="text" id="login-username" placeholder="Username">
+<input type="password" id="login-password" placeholder="Password">
+<button onclick="loginUser()">Login</button>
+
+<h3>Add Transaction</h3>
+<select id="transaction-type">
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+</select>
+<input type="number" id="transaction-amount" placeholder="Amount">
+<input type="text" id="transaction-category" placeholder="Category">
+<button onclick="addTransaction()">Add Transaction</button>
+
+<h3>Check Credit Score</h3>
+<input type="number" id="credit-userId" placeholder="User ID">
+<button onclick="getCreditScore()">Get Credit Score</button>
+<p id="credit-score-result"></p>
+</body>
+</html>

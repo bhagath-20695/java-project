@@ -1,0 +1,14 @@
+com\example\creditkarma\model\User.class
+com\example\creditkarma\controller\AuthController.class
+com\example\creditkarma\repository\CreditScoreRepository.class
+com\example\creditkarma\model\CreditScore.class
+com\example\creditkarma\model\Transaction.class
+com\example\creditkarma\service\UserService.class
+com\example\creditkarma\repository\UserRepository.class
+com\example\creditkarma\controller\CreditScoreController.class
+com\example\creditkarma\CreditKarmaApplication.class
+com\example\creditkarma\controller\TransactionController.class
+com\example\creditkarma\repository\TransactionRepository.class
+com\example\creditkarma\service\CreditScoreService.class
+com\example\creditkarma\config\SecurityConfig.class
+com\example\creditkarma\service\TransactionService.class

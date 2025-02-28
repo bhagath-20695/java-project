@@ -1,0 +1,14 @@
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\config\SecurityConfig.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\controller\AuthController.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\controller\CreditScoreController.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\controller\TransactionController.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\CreditKarmaApplication.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\model\CreditScore.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\model\Transaction.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\model\User.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\repository\CreditScoreRepository.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\repository\TransactionRepository.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\repository\UserRepository.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\service\CreditScoreService.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\service\TransactionService.java
+C:\Users\14694\IdeaProjects\creditkarma\src\main\java\com\example\creditkarma\service\UserService.java
